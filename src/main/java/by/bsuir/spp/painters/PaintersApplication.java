@@ -1,4 +1,4 @@
-package by.bsuir.mpp.painters;
+package by.bsuir.spp.painters;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

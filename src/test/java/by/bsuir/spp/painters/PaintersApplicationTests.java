@@ -1,4 +1,4 @@
-package by.bsuir.mpp.painters;
+package by.bsuir.spp.painters;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
