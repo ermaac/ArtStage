@@ -1,9 +1,6 @@
 package dao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Image {
@@ -11,8 +8,10 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer project_id;
-    private Integer painter_id;
-    private Boolean image;
+    @ManyToOne
+    @JoinColumn(name = "PainterInfo_Id")
+    private PainterInfo painterInfo;
+    private String image;
 
     public Integer getId() {
         return id;
@@ -22,12 +21,12 @@ public class Image {
         this.id = id;
     }
 
-    public Integer getPainter_id() {
-        return painter_id;
+    public PainterInfo getPainterInfo() {
+        return painterInfo;
     }
 
-    public void setPainter_id(Integer painter_id) {
-        this.painter_id = painter_id;
+    public void setPainter_id(PainterInfo painterInfo) {
+        this.painterInfo = painterInfo;
     }
 
     public Integer getProject_id() {
@@ -38,11 +37,11 @@ public class Image {
         this.project_id = project_id;
     }
 
-    public Boolean getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Boolean image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

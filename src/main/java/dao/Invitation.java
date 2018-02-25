@@ -1,9 +1,6 @@
 package dao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
@@ -12,8 +9,12 @@ public class Invitation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer project_id;
-    private Integer senderPainter_infoId;
-    private Integer recievePainter_infoId;
+    @OneToOne
+    @JoinColumn(name = "SenderPainter_Id")
+    private PainterInfo senderPainterInfo;
+    @OneToOne
+    @JoinColumn(name = "RecieverPainter_Id")
+    private PainterInfo recieverPainterInfo;
     private String description;
     private Date date;
 
@@ -33,20 +34,20 @@ public class Invitation {
         this.project_id = project_id;
     }
 
-    public Integer getSenderPainter_infoId() {
-        return senderPainter_infoId;
+    public PainterInfo getSenderPainterInfo() {
+        return senderPainterInfo;
     }
 
-    public void setSenderPainter_infoId(Integer senderPainter_infoId) {
-        this.senderPainter_infoId = senderPainter_infoId;
+    public void setSenderPainterInfo(PainterInfo senderPainterInfo) {
+        this.senderPainterInfo = senderPainterInfo;
     }
 
-    public Integer getRecievePainter_infoId() {
-        return recievePainter_infoId;
+    public PainterInfo getRecieverPainterInfo() {
+        return recieverPainterInfo;
     }
 
-    public void setRecievePainter_infoId(Integer recievePainter_infoId) {
-        this.recievePainter_infoId = recievePainter_infoId;
+    public void setRecieverPainterInfo(PainterInfo recieverPainterInfo) {
+        this.recieverPainterInfo= recieverPainterInfo;
     }
 
     public String getDescription() {

@@ -1,16 +1,15 @@
 package dao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Integer profile_Id;
+    @OneToOne
+    @JoinColumn(name="Profile_Id")
+    private Profile profile;
     private String country;
     private String region;
     private String city;
@@ -25,12 +24,12 @@ public class Address {
         this.id = id;
     }
 
-    public Integer getProfile_Id() {
-        return profile_Id;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public void setProfile_Id(Integer profile_Id) {
-        this.profile_Id = profile_Id;
+    public void setProfile_Id(Profile profile) {
+        this.profile = profile;
     }
 
     public String getCountry() {

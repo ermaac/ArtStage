@@ -2,18 +2,18 @@ package dao;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 public class Ban {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Integer user_id;
+    @ManyToOne
+    @JoinColumn(name="User_Id")
+    private User user;
     private Date blocked_time;
     private Date unblocked_time;
     private String description;
@@ -26,12 +26,12 @@ public class Ban {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getBlocked_time() {
