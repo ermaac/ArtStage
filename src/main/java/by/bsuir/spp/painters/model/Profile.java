@@ -1,4 +1,4 @@
-package model;
+package by.bsuir.spp.painters.model;
 
 import javax.persistence.*;
 import java.util.Date;

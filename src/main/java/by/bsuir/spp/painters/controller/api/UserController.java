@@ -1,6 +1,6 @@
-package controller.api;
-import model.User;
-import model.repository.UserRepository;
+package by.bsuir.spp.painters.controller.api;
+import by.bsuir.spp.painters.model.User;
+import by.bsuir.spp.painters.model.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

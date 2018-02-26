@@ -1,6 +1,6 @@
-package model.repository;
+package by.bsuir.spp.painters.model.repository;
 
-import model.User;
+import by.bsuir.spp.painters.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
