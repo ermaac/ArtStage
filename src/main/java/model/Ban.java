@@ -1,10 +1,7 @@
-package dao;
-
-import org.springframework.format.annotation.DateTimeFormat;
+package model;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Time;
 
 @Entity
 public class Ban {

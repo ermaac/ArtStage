@@ -1,7 +1,6 @@
-package dao;
+package model;
 
 import javax.persistence.*;
-import javax.swing.*;
 import java.util.Set;
 
 public class Skill {

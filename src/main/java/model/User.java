@@ -1,4 +1,4 @@
-package dao;
+package model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,6 @@ public class User {
 
     private String password;
     private String role;
-
     public Integer getId() {
         return id;
     }
