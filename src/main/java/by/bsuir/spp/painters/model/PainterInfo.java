@@ -13,6 +13,7 @@ public class PainterInfo {
     private Integer dealsCount;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     public int getId() {
         return id;

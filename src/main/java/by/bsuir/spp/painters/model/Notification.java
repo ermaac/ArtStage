@@ -1,9 +1,6 @@
 package by.bsuir.spp.painters.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -16,6 +13,7 @@ public class Notification {
     private Date date;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     public int getId() {
         return id;

@@ -1,9 +1,6 @@
 package by.bsuir.spp.painters.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +14,7 @@ public class Address {
     private Integer houseNumber;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     public int getId() {
         return id;
