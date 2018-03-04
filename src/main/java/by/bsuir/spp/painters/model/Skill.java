@@ -7,11 +7,10 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class Project {
+public class Skill {
     private int id;
     private String name;
-    private String state;
-    private String description;
+    private Short level;
 
     @Id
     @Column(name = "Id")
@@ -34,39 +33,28 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "State")
-    public String getState() {
-        return state;
+    @Column(name = "Level")
+    public Short getLevel() {
+        return level;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    @Basic
-    @Column(name = "Description")
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setLevel(Short level) {
+        this.level = level;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Project project = (Project) o;
-        return id == project.id &&
-                Objects.equals(name, project.name) &&
-                Objects.equals(state, project.state) &&
-                Objects.equals(description, project.description);
+        Skill skill = (Skill) o;
+        return id == skill.id &&
+                Objects.equals(name, skill.name) &&
+                Objects.equals(level, skill.level);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, state, description);
+        return Objects.hash(id, name, level);
     }
 }

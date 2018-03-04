@@ -1,27 +1,30 @@
 package by.bsuir.spp.painters.model;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
+    private int id;
     private String login;
-
-    private String password;
+    private String passwordHash;
     private String role;
-    public Integer getId() {
+
+    @Id
+    @Column(name = "Id")
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
+
+    @Basic
+    @Column(name = "Login")
     public String getLogin() {
         return login;
     }
@@ -30,14 +33,18 @@ public class User {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
+    @Basic
+    @Column(name = "Password_Hash")
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
+    @Basic
+    @Column(name = "Role")
     public String getRole() {
         return role;
     }
@@ -46,5 +53,20 @@ public class User {
         this.role = role;
     }
 
-}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(passwordHash, user.passwordHash) &&
+                Objects.equals(role, user.role);
+    }
 
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, login, passwordHash, role);
+    }
+}

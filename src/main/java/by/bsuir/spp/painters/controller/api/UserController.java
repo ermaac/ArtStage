@@ -22,7 +22,7 @@ public class UserController {
     public User createUser(@RequestParam String login, @RequestParam String password){
         User user = new User();
         user.setLogin(login);
-        user.setPassword(password);
+        user.setPasswordHash(password);
         user.setRole("user");
         userRepository.save(user);
         return user;
