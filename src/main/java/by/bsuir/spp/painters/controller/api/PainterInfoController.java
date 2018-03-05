@@ -62,11 +62,11 @@ public class PainterInfoController {
     {
         painterInfoRepository.delete(id);
     }
-   /* @PutMapping("/painter")
+    @PutMapping("/painter")
     public PainterInfo updatePainterInfo(PainterInfo painterInfo)
     {
         painterInfoRepository.updateById(painterInfo.getId(), painterInfo.getRate(), painterInfo.getRatesCount(),
                 painterInfo.getDealsCount());
         return painterInfo;
-    }*/
+    }
 }

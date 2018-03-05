@@ -7,9 +7,9 @@ package by.bsuir.spp.painters.model.repository;
 
 public interface RequestRepository extends CrudRepository<Request, Integer> {
 
-   /* @Query("FROM request where User_Id = ?1")
-    List<Request> findAllByUserId(int id);*/
+   @Query(value = "FROM request where User_Id = ?1", nativeQuery = true)
+    List<Request> findAllByUserId(int id);
 
-   /* @Query("UPDATE request SET Status = ?2 WHERE Id = ?1")
-    void updateStatusById(int id, String status);*/
+   @Query(value = "UPDATE request SET Status = ?2 WHERE Id = ?1", nativeQuery = true)
+    void updateStatusById(int id, String status);
 }

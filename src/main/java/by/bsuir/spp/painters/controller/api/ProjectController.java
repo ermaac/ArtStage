@@ -40,10 +40,10 @@ public class ProjectController {
         projectRepository.delete(id);
     }
 
-  /*  @PutMapping
+    @PutMapping
     public void updateProject(int id, String name, String state, String description)
     {
        projectRepository.updateById(id, name, state, description);
     }
-    */
+
 }

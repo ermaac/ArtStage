@@ -12,24 +12,23 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.Properties;
 
+import static by.bsuir.spp.painters.model.repository.Implementation.ConnectionClass.createPropsGeneral;
+import static by.bsuir.spp.painters.model.repository.Implementation.ConnectionClass.getConnection;
+
 
 public class ProjectRepositoryCustomImpl implements ProjectRepositoryCustom {
-    /*@Query("UPDATE project SET Name = ?2, State = ?3, Description = ?4 WHERE Id = ?1")
-    void updateById(Project project);*/
+
     public void updateById(Project project) throws SQLException
     {
-        Connection connMysql = DriverManager.getConnection("jdbc:mysql:", createPropsGeneral("localhost", "3306", "art_stage", "sasha", "sasha"));
+        Connection connMysql = getConnection();
 
-        String query = "UPDATE project SET Name = ?2, State = ?3, Description = ?4 WHERE Id = ?1";
+        String query = "UPDATE project SET Name = ?, State = ?, Description = ? WHERE Id = ?";
+        PreparedStatement ps = connMysql.prepareStatement(query);
+        ps.setString(1,project.getName());
+        ps.setString(2, project.getState());
+        ps.setString(3, project.getDescription());
+        ps.setInt(4, project.getId());
+        ps.execute();
+    }
 
-    }
-    public static Properties createPropsGeneral(String host, String port, String database, String user, String password) {
-        Properties props = new Properties();
-        props.put("host", host);
-        props.put("port", port);
-        props.put("database", database);
-        props.put("user", user);
-        props.put("password", password);
-        return props;
-    }
 }
