@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface BanRepository extends CrudRepository<Ban, Integer> {
     public Ban findById(int id);
+    public Ban findByUserId(int id);
 }

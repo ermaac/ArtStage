@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AddressRepository extends CrudRepository<Address, Integer> {
     public Address findById(int id);
+    public Address findByProfileId(int id);
 }

@@ -1,6 +1,10 @@
 package by.bsuir.spp.painters.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -12,6 +16,19 @@ public class Profile {
     private String lastname;
     private Date birthday;
     private String phoneNumber;
+    private User user;
+
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="User_id", insertable = false, updatable = false)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

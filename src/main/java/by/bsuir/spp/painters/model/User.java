@@ -1,5 +1,8 @@
 package by.bsuir.spp.painters.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -9,6 +12,18 @@ public class User {
     private String login;
     private String passwordHash;
     private String role;
+    private Profile profile;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
