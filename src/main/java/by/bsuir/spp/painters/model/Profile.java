@@ -43,6 +43,7 @@ public class Profile {
 
     @Basic
     @Column(name = "User_Id")
+    @JsonIgnore
     public int getUserId() {
         return userId;
     }

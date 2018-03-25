@@ -10,6 +10,7 @@ import java.util.Objects;
 public class User {
     private int id;
     private String login;
+
     private String passwordHash;
     private String role;
     private Profile profile;
@@ -22,8 +23,6 @@ public class User {
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

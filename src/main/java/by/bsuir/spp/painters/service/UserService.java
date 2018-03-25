@@ -4,6 +4,9 @@ import by.bsuir.spp.painters.model.User;
 import by.bsuir.spp.painters.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.util.StringUtils;
+
 
 @Service
 public class UserService {
@@ -19,6 +22,28 @@ public class UserService {
     }
 
     public User save(User user){
-        return userRepository.save(user);
+        if (isValid(user)){
+            userRepository.save(user);
+            return user;
+        }
+        return null;
+    }
+
+    public User createUser(User user) {
+        user.setRole("user");
+        return save(user);
+    }
+
+    private boolean isValid(User user){
+        if (StringUtils.isEmpty(user.getLogin())){
+            return false;
+        }
+        if (StringUtils.isEmpty(user.getRole())){
+            return false;
+        }
+        if (StringUtils.isEmpty(user.getPasswordHash())){
+            return false;
+        }
+        return true;
     }
 }
