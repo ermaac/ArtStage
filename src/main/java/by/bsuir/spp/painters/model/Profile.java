@@ -17,6 +17,7 @@ public class Profile {
     private Date birthday;
     private String phoneNumber;
     private User user;
+    private Address address;
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
@@ -27,6 +28,15 @@ public class Profile {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL)
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
 

@@ -2,6 +2,7 @@ package by.bsuir.spp.painters.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -15,6 +16,8 @@ public class User {
     private String role;
     private Profile profile;
 
+    private Address address;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     public Profile getProfile() {
         return profile;
@@ -25,6 +28,7 @@ public class User {
     }
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     public int getId() {
@@ -46,6 +50,7 @@ public class User {
     }
 
     @Basic
+    @JsonIgnore
     @Column(name = "Password_Hash")
     public String getPasswordHash() {
         return passwordHash;

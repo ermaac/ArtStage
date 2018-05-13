@@ -1,6 +1,7 @@
 package by.bsuir.spp.painters.service;
 
 import by.bsuir.spp.painters.model.Profile;
+import by.bsuir.spp.painters.model.User;
 import by.bsuir.spp.painters.model.repository.ProfileRepository;
 import by.bsuir.spp.painters.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ public class ProfileService {
     ProfileRepository profileRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    UserService userService;
 
     public Profile save(Profile profile){
         if (profileValid(profile))
@@ -41,8 +44,9 @@ public class ProfileService {
     }
 
     public Profile createProfile(Profile profile){
-        int userId = profile.getUserId();
-        Profile existingProfile = profileRepository.findByUserId(userId);
+        User currentUser = userService.getCurrentUser();
+        profile.setUserId(currentUser.getId());
+        Profile existingProfile = profileRepository.findByUserId(profile.getUserId());
         if (existingProfile == null)
             return save(profile);
         return null;
@@ -54,7 +58,7 @@ public class ProfileService {
 
     public boolean profileValid(Profile profile){
         Integer userId = profile.getUserId();
-        if (userRepository.findById(userId) == null)
+        if (userService.findById(userId) == null)
             return false;
         if (profile.getFirstname().isEmpty())
             return false;

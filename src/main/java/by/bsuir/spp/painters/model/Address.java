@@ -1,5 +1,7 @@
 package by.bsuir.spp.painters.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -12,6 +14,18 @@ public class Address {
     private String city;
     private String street;
     private Integer houseNumber;
+    private Profile profile;
+
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="Profile_id", insertable = false, updatable = false)
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

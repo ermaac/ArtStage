@@ -39,6 +39,12 @@ public class UserController {
         return new ResponseEntity<UserDto>(createdUserDto, HttpStatus.OK);
     }
 
+    @GetMapping("/account")
+    public ResponseEntity<User> getAccount(){
+        User currentUser = userService.getCurrentUser();
+        return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+    }
+
     private User convertToEntity(UserDto userDto) {
         User user = modelMapper.map(userDto, User.class);
         user.setPasswordHash(bCryptPasswordEncoder.encode(userDto.getPassword()));
