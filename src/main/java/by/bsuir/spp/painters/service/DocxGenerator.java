@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-@Service
+
 public class DocxGenerator {
     private DocxStamper stamper;
     private InputStream inputStream;
@@ -27,9 +27,9 @@ public class DocxGenerator {
 //    @Autowired
 //    private ResourceLoader resourceLoader;
 
-    public DocxGenerator(){
+    public DocxGenerator(Context context){
 
-        context = new ContractContext();
+        this.context = context;
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         inputStream = classLoader.getResourceAsStream("documentTemplates/contract.docx");
         outputStream = new ByteOutputStream();

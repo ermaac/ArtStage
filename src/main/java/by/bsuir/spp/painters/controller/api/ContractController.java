@@ -12,25 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 @RestController
 @RequestMapping("/api")
 public class ContractController {
 
     @GetMapping("/contracts.{format}")
-    public void createProfile(HttpServletResponse response, @PathVariable("format") String format){
+    public void createProfile(HttpServletResponse response, @PathVariable("format") String format,
+                              @PathVariable int painterId, @PathVariable int customerId, @PathVariable int pictureId){
         ContractService contractService = new ContractService(format);
         byte[] document = contractService.generateContract();
-        if (document == null){
-//            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=\"contract.docx\"");
         try {
             response.getOutputStream().write(document);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        response.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-        response.setHeader("Content-Disposition", "attachment; filename=" + "contract");
-//        return new ResponseEntity<byte[]>();
     }
 }
